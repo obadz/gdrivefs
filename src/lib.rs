@@ -398,6 +398,7 @@ impl fuse::Filesystem for GDriveFS {
           return;
         }
         let mut tree = file_tree.write().unwrap();
+        tree.clear_children(&ino);
         for file in result.unwrap() {
           tree.insert_node(Some(ino), file);
         }
